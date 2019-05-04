@@ -16,6 +16,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#333333",
     marginBottom: 5
+  },
+  splashText: {
+    color: "white",
+    fontSize: 40,
+    fontWeight: "bold"
+  },
+  splashContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "orange"
   }
 });
 
