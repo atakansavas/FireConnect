@@ -17,7 +17,7 @@ export default class Splash extends React.Component<IProps> {
     return new Promise(resolve =>
       setTimeout(() => {
         resolve("result");
-      }, 6000)
+      }, 15000)
     );
   };
 
@@ -34,8 +34,8 @@ export default class Splash extends React.Component<IProps> {
   render() {
     return (
       <View style={styles.splashContainer}>
-        <Text style={styles.splashText}>Welcome to</Text>
-        <Text style={styles.splashText}>FireConnect</Text>
+        <Text style={styles.splashText}>SENI</Text>
+        <Text style={styles.splashText}>SEVIYORUM</Text>
       </View>
     );
   }

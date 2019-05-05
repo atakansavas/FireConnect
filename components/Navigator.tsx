@@ -17,7 +17,8 @@ const MainNavigator = createStackNavigator({
 
 const InitialNavigator = createSwitchNavigator({
   Splash: SplashScreen,
-  Main: MainNavigator
+  Main: Main,
+  Home: Home
 });
 
 export default createAppContainer(InitialNavigator);

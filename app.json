@@ -24,6 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Fireconnect app",
+    "githubUrl": "https://github.com/atakansavas/FireConnect"
   }
 }

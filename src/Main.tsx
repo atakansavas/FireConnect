@@ -25,7 +25,7 @@ export default class Main extends Component<Props> {
       <View style={styles.mainContainer}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, click above</Text>
-        <Button title="Go to Home" onPress={() => this.goToHome()} />
+        <Button title="Home Page" onPress={() => this.goToHome()} />
       </View>
     );
   }
