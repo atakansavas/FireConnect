@@ -13,28 +13,28 @@ export default class App extends Component<IProps, IState> {
     this.state = { isLoading: true };
   }
 
-  async componentDidMount() {
-    // Preload data from an external API
-    // Preload data using AsyncStorage
-    const data = await this.performTimeConsumingTask();
+  // async componentDidMount() {
+  //   // Preload data from an external API
+  //   // Preload data using AsyncStorage
+  //   const data = await this.performTimeConsumingTask();
 
-    if (data !== null) {
-      this.setState({ isLoading: false });
-    }
-  }
+  //   if (data !== null) {
+  //     this.setState({ isLoading: false });
+  //   }
+  // }
 
-  performTimeConsumingTask = async () => {
-    return new Promise(resolve =>
-      setTimeout(() => {
-        resolve("result");
-      }, 3000)
-    );
-  };
+  // performTimeConsumingTask = async () => {
+  //   return new Promise(resolve =>
+  //     setTimeout(() => {
+  //       resolve("result");
+  //     }, 3000)
+  //   );
+  // };
 
   render() {
-    if (this.state.isLoading) {
-      return <Splash />;
-    }
+    // if (this.state.isLoading) {
+    //   return <Splash />;
+    // }
 
     return <Navigator />;
   }
