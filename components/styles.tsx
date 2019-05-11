@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
     backgroundColor: "#F5FCFF"
   },
   welcome: {
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   LoginMainContainer: {
+    flex: 1,
     borderWidth: 1,
     borderRadius: 2,
     borderColor: "#ddd",

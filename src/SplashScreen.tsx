@@ -17,7 +17,7 @@ export default class Splash extends React.Component<IProps> {
     return new Promise(resolve =>
       setTimeout(() => {
         resolve("result");
-      }, 1000)
+      }, 100)
     );
   };
 

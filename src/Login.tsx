@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { View, TextInput } from "react-native";
 import styles from "../components/styles";
 import Utility from "../components/Utility";
@@ -12,8 +12,17 @@ interface IState {
 }
 
 export default class Login extends Component<IProps, IState> {
-  handleClick() {
-    Utility.showAlert(this.state.mail, "Description");
+  /**
+   *
+   */
+  constructor(props: IProps) {
+    super(props);
+
+    this.state = { mail: "", password: "" };
+  }
+  handleClick(mail: string, password: string) {
+    // Utility.showAlert("test baslik", "Description");
+    Utility.ShowAlert(mail, password);
   }
 
   render() {
@@ -36,7 +45,13 @@ export default class Login extends Component<IProps, IState> {
           />
         </View>
         <View style={styles.LoginSubContainer}>
-          <Button onPress={this.handleClick}>Giris Yap</Button>
+          <Button
+            onPress={() =>
+              this.handleClick(this.state.mail, this.state.password)
+            }
+          >
+            Giris Yap
+          </Button>
         </View>
       </View>
     );

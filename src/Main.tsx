@@ -13,9 +13,6 @@ interface IState {
   isLoggedIn: boolean;
 }
 export default class Main extends Component<IProps, IState> {
-  /**
-   *
-   */
   constructor(props: IProps) {
     super(props);
     this.state = { isLoggedIn: false };
@@ -39,6 +36,13 @@ export default class Main extends Component<IProps, IState> {
     this.props.navigation.navigate("Home", { screen: Home });
   }
 
+  Greeting() {
+    if (this.state.isLoggedIn) {
+      return <Home />;
+    }
+    return <Login />;
+  }
+
   render() {
     let result = null;
     if (!this.state.isLoggedIn) result = Home;
@@ -46,19 +50,7 @@ export default class Main extends Component<IProps, IState> {
     return (
       <View style={styles.mainContainer}>
         <Header headerText="FireConnect Title" />
-        {result}
-        {/* {this.state.isLoggedIn ? <Home /> : <Login />} */}
-        {/* {this.controlUserStatus()} */}
-        {/* {(() => {
-          if (!this.state.isLoggedIn) {
-            <Home />;
-          } else {
-            <Login />;
-          }
-        })()} */}
-        {/* <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, click above</Text>
-        <Button title="Home Page" onPress={() => this.goToHome()} /> */}
+        {this.Greeting()}
       </View>
     );
   }

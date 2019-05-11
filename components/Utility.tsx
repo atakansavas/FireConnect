@@ -2,11 +2,9 @@ import firebase from "firebase";
 import { Alert } from "react-native";
 
 export default class Utility {
-  static initFirebase() {
+  static initFirebase() {}
 
-  }
-
-  static showAlert(title: string = "FirebaseApp", description: string) {
+  static ShowConfirmation(title: string = "FirebaseApp", description: string) {
     Alert.alert(
       title,
       description,
@@ -24,5 +22,9 @@ export default class Utility {
       ],
       { cancelable: false }
     );
+  }
+
+  static ShowAlert(title: string = "FirebaseApp", description: string) {
+    Alert.alert(title, description);
   }
 }
