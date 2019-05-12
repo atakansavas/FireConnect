@@ -91,6 +91,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingTop: 10,
     paddingBottom: 10
+  },
+  SpinnerStyle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 

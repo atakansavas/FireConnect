@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { View, TextInput } from "react-native";
+import firebase from "@firebase/app";
+import "@firebase/auth";
 import styles from "../components/styles";
 import Utility from "../components/Utility";
 import Button from "../components/Button";
+import Spinner from "../components/Spinner";
 
 interface IProps {}
 
 interface IState {
   mail: string;
   password: string;
+  isLoading: boolean;
 }
 
 export default class Login extends Component<IProps, IState> {
@@ -18,11 +22,48 @@ export default class Login extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
 
-    this.state = { mail: "", password: "" };
+    this.state = { mail: "", password: "", isLoading: false };
   }
-  handleClick(mail: string, password: string) {
+
+  handleClick() {
     // Utility.showAlert("test baslik", "Description");
-    Utility.ShowAlert(mail, password);
+    const { mail, password } = this.state;
+    this.setState({ isLoading: true });
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(mail, password)
+      .then(this.loginSuccess.bind(this))
+      .catch(() => {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(mail, password)
+          .then(this.loginSuccess.bind(this))
+          .catch(this.loginFail.bind(this));
+      });
+
+    // Utility.ShowAlert(mail, password);
+  }
+
+  loginSuccess() {
+    Utility.ShowAlert("Basarili!", "Sisteme basarili sekilde giris yaptiniz.");
+    this.setState({ isLoading: false });
+  }
+
+  loginFail() {
+    Utility.ShowAlert(
+      "Hata!",
+      "Ayni kullanici bilgileri ile sistemde kullanici bulunuyor."
+    );
+    this.setState({ isLoading: false });
+  }
+
+  renderButton() {
+    if (!this.state.isLoading) {
+      return <Button onPress={this.handleClick.bind(this)}>Giris Yap</Button>;
+    }
+
+    return <Spinner />;
   }
 
   render() {
@@ -44,15 +85,7 @@ export default class Login extends Component<IProps, IState> {
             onChangeText={password => this.setState({ password })}
           />
         </View>
-        <View style={styles.LoginSubContainer}>
-          <Button
-            onPress={() =>
-              this.handleClick(this.state.mail, this.state.password)
-            }
-          >
-            Giris Yap
-          </Button>
-        </View>
+        <View style={styles.LoginSubContainer}>{this.renderButton()}</View>
       </View>
     );
   }
