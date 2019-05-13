@@ -13,12 +13,12 @@ interface IProps {
   navigation: NavigationScreenProp<any, any>;
 }
 interface IState {
-  isLoggedIn: boolean;
+  isLoggedIn: number;
 }
 export default class Main extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    this.state = { isLoggedIn: null };
+    this.state = { isLoggedIn: 0 };
   }
 
   componentWillMount() {
@@ -26,18 +26,24 @@ export default class Main extends Component<IProps, IState> {
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({ isLoggedIn: true });
+        this.setState({ isLoggedIn: 1 });
       } else {
-        this.setState({ isLoggedIn: false });
+        this.setState({ isLoggedIn: 2 });
       }
     });
   }
 
   controlUserStatus() {
-    if (this.state.isLoggedIn) {
-      return <Home />;
+    switch (this.state.isLoggedIn) {
+      case 0:
+        return <Spinner />;
+      case 1:
+        return <Home />;
+      case 2:
+        return <Login />;
+      default:
+        return <Spinner />;
     }
-    return <Login />;
   }
 
   render() {
