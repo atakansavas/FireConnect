@@ -30,19 +30,22 @@ export default class Login extends Component<IProps, IState> {
     const { mail, password } = this.state;
     this.setState({ isLoading: true });
 
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(mail, password)
-      .then(this.loginSuccess.bind(this))
-      .catch(() => {
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(mail, password)
-          .then(this.loginSuccess.bind(this))
-          .catch(this.loginFail.bind(this));
-      });
-
-    // Utility.ShowAlert(mail, password);
+    if (mail === "" || password === "") {
+      Utility.ShowAlert("Hata!", "Lutfen alanlari doldurunuz.");
+      this.setState({ isLoading: false });
+    } else {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(mail, password)
+        .then(this.loginSuccess.bind(this))
+        .catch(() => {
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(mail, password)
+            .then(this.loginSuccess.bind(this))
+            .catch(this.loginFail.bind(this));
+        });
+    }
   }
 
   loginSuccess() {
@@ -79,6 +82,7 @@ export default class Login extends Component<IProps, IState> {
         </View>
         <View style={styles.LoginSubContainer}>
           <TextInput
+            secureTextEntry
             placeholder="password"
             style={styles.GeneralInput}
             value={this.state.password}

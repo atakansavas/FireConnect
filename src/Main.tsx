@@ -36,7 +36,7 @@ export default class Main extends Component<IProps, IState> {
   controlUserStatus() {
     switch (this.state.isLoggedIn) {
       case 0:
-        return <Spinner />;
+        return <Spinner size="large" />;
       case 1:
         return <Home />;
       case 2:

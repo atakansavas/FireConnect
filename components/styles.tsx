@@ -7,6 +7,11 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     backgroundColor: "#F5FCFF"
   },
+  homeContainer: {
+    flex: 1,
+    textAlign: "center",
+    alignItems: "center"
+  },
   welcome: {
     fontSize: 20,
     textAlign: "center",
